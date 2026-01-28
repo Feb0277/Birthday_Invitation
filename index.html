@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keysa's Sweet Seventeen Birthday</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #2c3e50 0%, #4a5f7a 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Sparkle background */
+        .sparkle-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+            opacity: 0;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        /* Invitation card */
+        .invitation-card {
+            background: rgba(245, 240, 235, 0.98);
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            font-size: 18px;
+            color: #8B6F47;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .sweet-seventeen {
+            font-family: 'Gergio', serif;
+            font-size: 45px;
+            color: #B8860B;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .number-17 {
+            font-size: 120px;
+            font-weight: bold;
+            background: linear-gradient(145deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .birthday-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 52px;
+            color: #8B6F47;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .name-line {
+            font-size: 24px;
+            color: #8B6F47;
+            margin: 20px 0;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .balloon-emoji {
+            font-size: 28px;
+        }
+
+        .dresscode {
+            font-size: 22px;
+            color: #6B4423;
+            margin: 25px 0;
+            font-weight: bold;
+        }
+
+        .address {
+            font-size: 16px;
+            color: #6B4423;
+            line-height: 1.6;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(139, 111, 71, 0.3);
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            font-size: 18px;
+            color: #8B6F47;
+            margin-bottom: 10px;
+        }
+
+        .detail-value {
+            font-size: 42px;
+            color: #6B4423;
+            font-weight: bold;
+        }
+
+        .detail-sub {
+            font-size: 20px;
+            color: #8B6F47;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        /* Balloon animations */
+        .balloon {
+            position: fixed;
+            bottom: -150px;
+            width: 50px;
+            height: 65px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            z-index: 10;
+            animation: float-up 8s ease-in forwards;
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 80px;
+            background: rgba(139, 111, 71, 0.6);
+        }
+
+        .balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background: rgba(139, 111, 71, 0.8);
+            border-radius: 50%;
+        }
+
+        @keyframes float-up {
+            0% {
+                bottom: -150px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 110vh;
+                opacity: 0;
+            }
+        }
+
+        .balloon.gold-1 { background: linear-gradient(145deg, #FFD700, #DAA520); }
+        .balloon.gold-2 { background: linear-gradient(145deg, #FFA500, #FF8C00); }
+        .balloon.gold-3 { background: linear-gradient(145deg, #F0E68C, #DAA520); }
+
+        /* Music control */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(255, 215, 0, 0.9);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .music-control:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 10px;
+            }
+
+            .invitation-card {
+                padding: 40px 25px;
+            }
+
+            .sweet-seventeen {
+                font-size: 36px;
+            }
+
+            .number-17 {
+                font-size: 90px;
+            }
+
+            .birthday-text {
+                font-size: 40px;
+            }
+
+            .name-line {
+                font-size: 20px;
+            }
+
+            .dresscode {
+                font-size: 18px;
+            }
+
+            .address {
+                font-size: 14px;
+            }
+
+            .detail-value {
+                font-size: 32px;
+            }
+
+            .detail-sub {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sparkle-bg" id="sparkles"></div>
+
+    <!-- Main invitation -->
+    <div class="container">
+        <div class="invitation-card">
+            <div class="header">WE INVITE YOU TO CELEBRATE</div>
+            <div class="sweet-seventeen">sweet seventeen</div>
+            <div class="number-17">17</div>
+            <div class="birthday-text">Birthday</div>
+            
+            <div class="name-line">
+                <span class="balloon-emoji">🎈</span>
+                <span>KEYSA 17 TH BIRTHDAY</span>
+                <span class="balloon-emoji">🎈</span>
+            </div>
+            
+            <div class="dresscode">Dresscode: Hitam</div>
+            
+            <div class="address">
+                Alamat : Jl. Pasar. 6, Kwala Bingai, Kec.<br>
+                Stabat, Kabupaten Langkat, Sumatera Utara
+            </div>
+            
+            <div class="details">
+                <div class="detail-item">
+                    <div class="detail-label">Tanggal</div>
+                    <div class="detail-value">31</div>
+                    <div class="detail-sub">January 2026</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Jam</div>
+                    <div class="detail-value">20.00</div>
+                    <div class="detail-sub">WIB</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background music -->
+    <audio id="bgMusic" loop>
+        <source src="SZA.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music control button -->
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()">🔊</button>
+
+    <script>
+        // Create sparkles
+        function createSparkles() {
+            const sparkleContainer = document.getElementById('sparkles');
+            const sparkleCount = 100;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                sparkleContainer.appendChild(sparkle);
+            }
+        }
+
+        // Create balloons
+        function createBalloons() {
+            const colors = ['gold-1', 'gold-2', 'gold-3'];
+            const balloonCount = 15;
+            
+            for (let i = 0; i < balloonCount; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon ' + colors[Math.floor(Math.random() * colors.length)];
+                    balloon.style.left = Math.random() * 90 + 5 + '%';
+                    balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
+                    balloon.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(balloon);
+                    
+                    // Remove balloon after animation
+                    setTimeout(() => {
+                        balloon.remove();
+                    }, 10000);
+                }, i * 400);
+            }
+            
+            // Create new balloons continuously
+            setInterval(() => {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon ' + colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.left = Math.random() * 90 + 5 + '%';
+                balloon.style.animationDuration = (6 + Math.random() * 4) + 's';
+                document.body.appendChild(balloon);
+                
+                setTimeout(() => {
+                    balloon.remove();
+                }, 10000);
+            }, 2000);
+        }
+
+        // Music control
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.textContent = '🔇';
+                isPlaying = false;
+            } else {
+                music.play().catch(e => {
+                    console.log('Auto-play prevented:', e);
+                });
+                musicBtn.textContent = '🔊';
+                isPlaying = true;
+            }
+        }
+
+        // Auto-play music on page load
+        window.addEventListener('load', () => {
+            music.play().then(() => {
+                isPlaying = true;
+                musicBtn.textContent = '🔊';
+            }).catch(e => {
+                console.log('Auto-play prevented. Click the music button to play.');
+                musicBtn.textContent = '🔇';
+            });
+        });
+
+        // Try to play on user interaction if auto-play fails
+        document.addEventListener('click', function playOnce() {
+            if (!isPlaying) {
+                music.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.textContent = '🔊';
+                }).catch(e => {
+                    console.log('Play failed:', e);
+                });
+            }
+            document.removeEventListener('click', playOnce);
+        }, { once: true });
+
+        // Initialize
+        createSparkles();
+        createBalloons();
+    </script>
+</body>
+</html>
